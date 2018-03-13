@@ -40,6 +40,9 @@ public GameObject GetPooledBall()
         ballPoolNum = 0;
     }
     //if we’ve run out of objects in the pool too quickly, create a new one
+
+	// here we should instead be looking for another ball that's been deactivated
+
     if (pooledBalls[ballPoolNum].activeInHierarchy)
     {
         //create a new bullet and add it to the bulletList
@@ -47,7 +50,9 @@ public GameObject GetPooledBall()
         pooledBalls.Add(obj);
         ballsAmount++;
         ballPoolNum = ballsAmount - 1;
+		Debug.Log("Just instantiated ball " + ballPoolNum);
     }
+
         Debug.Log("BallSpawnerScript: " + ballPoolNum);
         return pooledBalls[ballPoolNum];
 }
