@@ -16,7 +16,7 @@ public class BallHandler : MonoBehaviour {
 
 	void OnCollisionEnter(Collision coll) {
 		if (coll.gameObject.CompareTag ("Ground")) {
-			Debug.Log ("ball hit ground");
+			//Debug.Log ("ball hit ground");
 			gameObject.SetActive (false);
 		}
 	}

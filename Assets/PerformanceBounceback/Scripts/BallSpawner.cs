@@ -7,7 +7,7 @@ public class BallSpawner : MonoBehaviour {
     public static BallSpawner current;
 
     public GameObject pooledBall; //the prefab of the object in the object pool
-    public int ballsAmount = 50; //the number of objects you want in the object pool
+    public int ballsAmount = 30; //the number of objects you want in the object pool
     public List<GameObject> pooledBalls; //the object pool
     public static int ballPoolNum = 0; //a number used to cycle through the pooled objects
 
@@ -40,8 +40,8 @@ public GameObject GetPooledBall()
         ballPoolNum = 0;
     }
     //if we’ve run out of objects in the pool too quickly, create a new one
-
-	// here we should instead be looking for another ball that's been deactivated
+	// NOTE: I have left the code below in just in case but this should not be run since we are 
+	// deactivating balls that hit the ground collider around the start zone
 
     if (pooledBalls[ballPoolNum].activeInHierarchy)
     {
@@ -50,10 +50,10 @@ public GameObject GetPooledBall()
         pooledBalls.Add(obj);
         ballsAmount++;
         ballPoolNum = ballsAmount - 1;
-		Debug.Log("Just instantiated ball " + ballPoolNum);
+		//Debug.Log("Just instantiated ball " + ballPoolNum);
     }
 
-        Debug.Log("BallSpawnerScript: " + ballPoolNum);
+        //Debug.Log("BallSpawnerScript: " + ballPoolNum);
         return pooledBalls[ballPoolNum];
 }
    	
