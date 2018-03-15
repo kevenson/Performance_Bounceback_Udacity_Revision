@@ -28,10 +28,10 @@ public class Trampoline : MonoBehaviour {
         {
             //Score Point
             scoreScript.score++;
+
             //Particle effect
             pSystem.Play();
-
-            //Debug.Log("Trampoline Hit");
+	
         }
 
     }

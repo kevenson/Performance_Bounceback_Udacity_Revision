@@ -7,11 +7,18 @@ public class Score : MonoBehaviour {
 
     public GameManager gameManager;
 	private Text text;
+	private int previousScore;
+	//public Trampoline trampoline;
 
 	// Use this for initialization
 	void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 		text = GetComponentInChildren<Text>();
+		previousScore = 0;
+	}
+
+	void updateScore() {
+		text.text = "Score: " + gameManager.score.ToString();
 	}
 	
 	// Update is called once per frame
@@ -19,8 +26,10 @@ public class Score : MonoBehaviour {
 
 		// move this to Start
        // Text text = GetComponentInChildren<Text>();
-        text.text = "Score: " + gameManager.score.ToString();
-
+		if (previousScore < gameManager.score) {
+			text.text = "Score: " + gameManager.score.ToString ();
+			previousScore = gameManager.score;
+		}
 		
 	}
 }

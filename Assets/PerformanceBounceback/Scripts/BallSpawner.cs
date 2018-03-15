@@ -31,31 +31,28 @@ public class BallSpawner : MonoBehaviour {
         }
     }
 
-	// see: https://discussions.udacity.com/t/objectpooling-still-implemented/257374/6
-public GameObject GetPooledBall()
-{
-    ballPoolNum++;
-    if (ballPoolNum > (ballsAmount - 1))
-    {
-        ballPoolNum = 0;
-    }
-    //if we’ve run out of objects in the pool too quickly, create a new one
-	// NOTE: I have left the code below in just in case but this should not be run since we are 
-	// deactivating balls that hit the ground collider around the start zone
+	public GameObject GetPooledBall()
+	{
+	    ballPoolNum++;
+	    if (ballPoolNum > (ballsAmount - 1))
+	    {
+	        ballPoolNum = 0;
+	    }
+	    //if we’ve run out of objects in the pool too quickly, create a new one
+		// NOTE: I have left the code below in just in case but this should not be run since we are 
+		// deactivating balls that hit the ground collider around the start zone
 
-    if (pooledBalls[ballPoolNum].activeInHierarchy)
-    {
-        //create a new bullet and add it to the bulletList
-        GameObject obj = Instantiate(pooledBall);
-        pooledBalls.Add(obj);
-        ballsAmount++;
-        ballPoolNum = ballsAmount - 1;
-		//Debug.Log("Just instantiated ball " + ballPoolNum);
-    }
+	    if (pooledBalls[ballPoolNum].activeInHierarchy)
+	    {
+	        //create a new bullet and add it to the bulletList
+	        GameObject obj = Instantiate(pooledBall);
+	        pooledBalls.Add(obj);
+	        ballsAmount++;
+	        ballPoolNum = ballsAmount - 1;
+	    }
 
-        //Debug.Log("BallSpawnerScript: " + ballPoolNum);
-        return pooledBalls[ballPoolNum];
-}
+	        return pooledBalls[ballPoolNum];
+	}
    	
 	// Update is called once per frame
 	void Update () {
